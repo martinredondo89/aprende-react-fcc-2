@@ -1,15 +1,19 @@
 import logo from './imagenes/freecodecamp-logo.png';
 import './App.css';
 import Boton from './componentes/Boton';
+import Contador from './componentes/Contador';
+//Hooks
+import { useState } from 'react';
 
 function App() {
-
+  const [numClics,setNumClics] = useState(0)
+  
   const manejarClic = () => {
-    console.log('Se hizo click')
+    setNumClics(numClics+1);
   }
 
   const reiniciarClic = () => {
-    console.log('Se hizo click en reiniciar')
+    setNumClics(0);
   }
 
   return (
@@ -18,16 +22,17 @@ function App() {
         <img src={logo} className="freecodecamp-logo" alt="Logo de freeCodeCamp" />
       </div>
       <div className='contenedor-principal'>
-
+        <Contador
+        numClics={numClics} />
         <Boton
           texto='Clic'
           esBotonClic={true}
-          manejarClic={manejarClic}/>
+          manejarClic={manejarClic} />
 
         <Boton
           texto='Reiniciar'
           esBotonClic={false}
-          manejarClic={manejarClic}/>
+          manejarClic={reiniciarClic} />
 
       </div>
     </div>
